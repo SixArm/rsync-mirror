@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# rsync-mirror scoped to items that are public content.
+#
+# Public content is any of these:
+#
+#   * The path is public:
+#
+#     * is in a directory name '/public/'
+#     * file name ends with *.pub, *.public
+#     * file name ends with *-public.*{pem,txt,uri,url}
+#
+#   * The file is encrypted:
+#
+#     * file name ends with *.gpg
+#
+#   * The file is a fingerprint:
+#
+#     * file name ends with "*.fingerprint" or "*.fingerprints"
+#     * file name is "fingerprint" or "fingerprints"
+#
+# Program: rsync-mirror-public-content
+# Version: 2.0.0
+# Created: 2015-01-25
+# Updated: 2016-01-12
+# License: GPL
+# Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
+##
+set -euf
+rsync -aHuOxzvi \
+    --include '*/' \
+    --include '/public/' \
+    --include '*.pub' \
+    --include '*.public' \
+    --include '*-public.pem' \
+    --include '*-public.txt' \
+    --include '*-public.uri' \
+    --include '*-public.url' \
+    --include '*.fingerprint' \
+    --include '*.fingerprints' \
+    --include 'fingerprint' \
+    --include 'fingerprints' \
+    --include '*.gpg' \
+    --exclude '*' \
+    "$@"

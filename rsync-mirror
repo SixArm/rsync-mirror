@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# rsync-mirror: rsync using our favorite settings for mirroring.
+#
+# Syntax:
+#
+#     rsync-mirror [OPTION...] SRC... [DEST]
+#
+# Example:
+#
+#     rsync-mirror ~/foo/ ~/bar/
+#
+# This script sets these options:
+#
+#   -a, --archive           archive mode; same as -rlptgoD (no -H)
+#   -H, --hard-links        preserve hard links
+#   -O, --omit-dir-times    omit directories when preserving times
+#   -x, --one-file-system   don't cross filesystem boundaries
+#   -z, --compress          compress file data during the transfer
+#   -i, --itemize-changes   output a change-summary for all updates
+#
+# This script deliberately does not set these options:
+#
+#   -u, --update            skip files that are newer on the receiver
+#   -v, --verbose           increase verbosity
+#   --partial               keep partially transferred files
+#   --progress              show progress during transfer
+#   --copy-links            transform symlink into referent file/dir
+#   --safe-links            ignore symlinks that point outside the tree
+#
+# Reasons:
+#
+#   * We like --hard-links even though this is an expensive calculation.
+#   * We only use --omit-dir-times because dir times fail on some systems.
+#   * We do not use --partial because temp dirs fail on some systems.
+#   * We want symlinks as-is, thus no --safe-links, --copy-links, etc.
+#
+# Program: rsync-mirror
+# Version: 2.0.0
+# Created: 2015-01-25
+# Updated: 2016-02-09
+# License: GPL
+# Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
+##
+set -euf
+rsync -aHuOxzvi "$@"
