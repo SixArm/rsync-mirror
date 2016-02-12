@@ -10,6 +10,8 @@
 #
 #     rsync-mirror-merge ~/foo/ ~/bar/
 #
+# ## Details ##
+#
 # This script is based on `rsync-mirror` which sets these options:
 #
 #   -a, --archive           archive mode; same as -rlptgoD (no -H)
@@ -43,9 +45,11 @@
 #   * each source arg must not start with a dash.
 #   * there must be a destination arg.
 #
-# TODO: a source can start with a dash.
-# TODO: one source arg and no destination arg is a noop.
-# TODO: add special arg "--" which separates options and sources.
+# TODO:
+#
+#   * A source can start with a dash.
+#   * One source arg and no destination arg is a noop.
+#   * Add special arg "--" which separates options and sources.
 #
 # Program: rsync-mirror-merge
 # Version: 2.0.0
@@ -57,7 +61,8 @@
 set -euf
 rsync -aHuOxzviu "$@"
 
-## Staples ##
+## Essential Functions ##
+
 out () { printf %s\\n "$*" ; }
 err () { >&2 printf %s\\n "$*" ; }
 

@@ -10,6 +10,8 @@
 #
 #     rsync-mirror-update ~/foo/ ~/bar/
 #
+# ## Details ##
+#
 # This script is based on `rsync-mirror` which sets these options:
 #
 #   -a, --archive           archive mode; same as -rlptgoD (no -H)
