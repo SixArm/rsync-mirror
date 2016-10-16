@@ -1,43 +1,55 @@
 #!/bin/sh
 #
-# rsync-mirror scoped to items that are public content.
+# rsync-mirror scoped to items that are public.
 #
-# Public content is any of these:
+# Public is any of these:
 #
-#   * The path is public:
+#   * The path is public if:
 #
-#     * is in a directory name '/public/'
-#     * file name ends with *.pub, *.public
-#     * file name ends with *-public.*{pem,txt,uri,url}
-#
-#   * The file is encrypted:
-#
-#     * file name ends with *.gpg
+#     * it contains a separator (slash, dash, or comma)
+#     * then `pub` or `public`
+#     * then the same separator, or the path ends
 #
 #   * The file is a fingerprint:
 #
-#     * file name ends with "*.fingerprint" or "*.fingerprints"
+#     * file name ends with a separator then `fingerprint` or `fingerprints`
 #     * file name is "fingerprint" or "fingerprints"
 #
+#   * The file is encrypted:
+#
+#     * file name ends with `.gpg`
+#
+# Examples:
+#
+#     foo/public/bar
+#     foo-public-bar
+#     foo.public.bar
+#     foo/pub/bar
+#
 # Program: rsync-mirror-public-content
-# Version: 2.0.0
+# Version: 2.1.0
 # Created: 2015-01-25
-# Updated: 2016-01-12
+# Updated: 2016-10-16
 # License: GPL
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
 set -euf
 rsync -aHuOxzvi \
     --include '*/' \
+    --include '/pub/' \
+    --include '.pub.' \
+    --include '-pub-' \
     --include '/public/' \
+    --include '.public.' \
+    --include '-public-' \
     --include '*.pub' \
+    --include '*-pub' \
     --include '*.public' \
-    --include '*-public.pem' \
-    --include '*-public.txt' \
-    --include '*-public.uri' \
-    --include '*-public.url' \
+    --include '*-public' \
     --include '*.fingerprint' \
+    --include '*-fingerprint' \
     --include '*.fingerprints' \
+    --include '*-fingerprints' \
     --include 'fingerprint' \
     --include 'fingerprints' \
     --include '*.gpg' \
