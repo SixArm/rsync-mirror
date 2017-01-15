@@ -58,6 +58,8 @@ rsync -aHuOxzvi \
     --include '*.fingerprints.txt' \
     --include '*-fingerprints' \
     --include '*-fingerprints.txt' \
+    --include 'ssh-host-key-fingerprints.txt' \
+    --include 'ssh-host-keys.txt' \
     --include '*.gpg' \
     --exclude '*' \
     "$@"
