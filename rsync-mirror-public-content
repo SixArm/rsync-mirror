@@ -27,9 +27,9 @@
 #     foo/pub/bar
 #
 # Program: rsync-mirror-public-content
-# Version: 2.1.0
+# Version: 2.2.0
 # Created: 2015-01-25
-# Updated: 2016-10-16
+# Updated: 2017-01-14
 # License: GPL
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
@@ -46,12 +46,18 @@ rsync -aHuOxzvi \
     --include '*-pub' \
     --include '*.public' \
     --include '*-public' \
-    --include '*.fingerprint' \
-    --include '*-fingerprint' \
-    --include '*.fingerprints' \
-    --include '*-fingerprints' \
     --include 'fingerprint' \
+    --include 'fingerprint.txt' \
     --include 'fingerprints' \
+    --include 'fingerprints.txt' \
+    --include '*.fingerprint' \
+    --include '*.fingerprint.txt' \
+    --include '*-fingerprint' \
+    --include '*-fingerprint.txt' \
+    --include '*.fingerprints' \
+    --include '*.fingerprints.txt' \
+    --include '*-fingerprints' \
+    --include '*-fingerprints.txt' \
     --include '*.gpg' \
     --exclude '*' \
     "$@"
