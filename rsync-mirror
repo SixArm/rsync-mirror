@@ -43,4 +43,4 @@
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
 set -euf
-rsync -aHuOxzvi "$@"
+rsync --timeout=60 -aHuOxzvi "$@"

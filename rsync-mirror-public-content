@@ -27,14 +27,15 @@
 #     foo/pub/bar
 #
 # Program: rsync-mirror-public-content
-# Version: 2.2.0
+# Version: 2.3.0
 # Created: 2015-01-25
-# Updated: 2017-01-14
+# Updated: 2019-08-23
 # License: GPL
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
 set -euf
 rsync -aHuOxzvi \
+    --timeout=60 \
     --include '*/' \
     --include '/pub/' \
     --include '.pub.' \

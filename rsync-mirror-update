@@ -21,7 +21,7 @@
 #   -z, --compress          compress file data during the transfer
 #   -i, --itemize-changes   output a change-summary for all updates
 #
-# This script also sets this option:
+# This script also sets these options:
 #
 #   -u, --update            skip files that are newer on the receiver
 #
@@ -41,11 +41,11 @@
 #   * We want symlinks as-is, thus no --safe-links, --copy-links, etc.
 #
 # Program: rsync-mirror-update
-# Version: 2.0.0
+# Version: 2.1.0
 # Created: 2015-01-25
-# Updated: 2016-02-06
+# Updated: 2019-08-23
 # License: GPL
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
 set -euf
-rsync -aHuOxzviu "$@"
+rsync --timeout=60 -aHuOxzviu "$@"
