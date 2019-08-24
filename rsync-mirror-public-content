@@ -1,33 +1,18 @@
 #!/bin/sh
 #
-# rsync-mirror scoped to items that are public.
+# rsync-mirror of items that are intended to be public.
 #
-# Public is any of these:
-#
-#   * The path is public if:
-#
-#     * it contains a separator (slash, dash, or comma)
-#     * then `pub` or `public`
-#     * then the same separator, or the path ends
-#
-#   * The file is a fingerprint:
-#
-#     * file name ends with a separator then `fingerprint` or `fingerprints`
-#     * file name is "fingerprint" or "fingerprints"
-#
-#   * The file is encrypted:
-#
-#     * file name ends with `.gpg`
+# An item is intended to be public if it contains any of
+# our preferred matches, below, such as "/public/".
 #
 # Examples:
 #
 #     foo/public/bar
 #     foo-public-bar
 #     foo.public.bar
-#     foo/pub/bar
 #
 # Program: rsync-mirror-public-content
-# Version: 2.3.0
+# Version: 3.0.0
 # Created: 2015-01-25
 # Updated: 2019-08-23
 # License: GPL
@@ -47,20 +32,5 @@ rsync -aHuOxzvi \
     --include '*-pub' \
     --include '*.public' \
     --include '*-public' \
-    --include 'fingerprint' \
-    --include 'fingerprint.txt' \
-    --include 'fingerprints' \
-    --include 'fingerprints.txt' \
-    --include '*.fingerprint' \
-    --include '*.fingerprint.txt' \
-    --include '*-fingerprint' \
-    --include '*-fingerprint.txt' \
-    --include '*.fingerprints' \
-    --include '*.fingerprints.txt' \
-    --include '*-fingerprints' \
-    --include '*-fingerprints.txt' \
-    --include 'ssh-host-key-fingerprints.txt' \
-    --include 'ssh-host-keys.txt' \
-    --include '*.gpg' \
     --exclude '*' \
     "$@"
