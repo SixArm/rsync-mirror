@@ -24,8 +24,7 @@
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
 set -euf
-rsync -aHuOxzvi \
-    --timeout=60 \
+rsync --timeout=60 -aHuOxzvi \
     --include '*/' \
     --include '/pub/' --include '/public/' \
     --include '.pub.' --include '*.pub' --include '.public.' --include '*.public' \

@@ -12,6 +12,7 @@
 #
 # This script is based on `rsync-mirror` which sets these options:
 #
+#   --timeout=60            set I/O timeout in seconds
 #   -a, --archive           archive mode; same as -rlptgoD (no -H)
 #   -H, --hard-links        preserve hard links
 #   -O, --omit-dir-times    omit directories when preserving times
@@ -43,9 +44,9 @@
 #     that may link to each other, such as a website that has many pages.
 #
 # Program: rsync-mirror-exact
-# Version: 2.1.0
+# Version: 2.1.1
 # Created: 2015-01-25
-# Updated: 2019-08-23
+# Updated: 2019-10-16
 # License: GPL
 # Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ##
